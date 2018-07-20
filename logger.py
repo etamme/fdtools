@@ -4,12 +4,12 @@ API="http://127.0.0.1:8000"
 
 class Bands:
   def __init__(self):
-    self.80m = 80
-    self.40m = 40
-    self.20m = 20
-    self.15m = 15
-    self.10m = 10
-    self.6m = 6
+    self.band80 = 80
+    self.band40 = 40
+    self.band20 = 20
+    self.band15 = 15
+    self.band10 = 10
+    self.band6 = 6
 
 class Modes:
   def __init__(self):
@@ -36,9 +36,9 @@ def logger(stdscr):
   win = curses.newwin(height, width, begin_y, begin_x)
 
   # create a new log entry and check to see if its a dupe
-  log_entry = LogEntry('T3ST',bands.20m,modes.cw)
-  result = check('T3ST')
-  stdscr.addstr('T3ST:'+str(result.body))
+  log_entry = LogEntry('T3ST',bands.band20,modes.cw)
+  result = check(log_entry)
+  stdscr.addstr('T3ST:'+str(result.content))
 
   # wait for q to be pressed
   while True:
