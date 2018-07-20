@@ -1,10 +1,14 @@
 import curses
-stdscr = curses.initscr()
-curses.noecho()
-curses.cbreak()
-stdscr.keypad(1)
+# setup curses and the terminal
+
+def logger(stdscr):
+  begin_x = 20; begin_y = 7
+  height = 5; width = 40
+  win = curses.newwin(height, width, begin_y, begin_x)
 
 
-# tear things down
-curses.nocbreak(); stdscr.keypad(0); curses.echo()
-curses.endwin()
+def main(): 
+    curses.wrapper(logger) 
+ 
+if __name__ == "__main__": 
+    main()
