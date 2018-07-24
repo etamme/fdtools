@@ -1,10 +1,9 @@
 import SimpleHTTPServer, SocketServer, MySQLdb
 
-#db = MySQLdb.connect(host="localhost",    # your host, usually localhost
-#                     user="user",         # your username
-#                     passwd="pass",  # your password
-#                     db="fdlog")        # name of the data base
-
+db = MySQLdb.connect(host="localhost",
+                     user="fdtools",
+                     db="fdtools")
+cur = db.cursor()
 
 PORT = 8000
 Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
@@ -14,8 +13,13 @@ httpd.serve_forever()
 
 
 
-#def check(log_entry):
-#  return ""
+def check(log):
+  global cur
+  cur.execute("SELECT * FROM logs WHERE dxcall="+log.dxcall+" and band="+log.band)
+  if cur.rowcount() > 0:
+    return "DUPE"+":"+log.dxcall+":"+log.band
+  else:
+    return "NODUPE"+":"+log.dxcall+":"+log.band
 
-#def log(log_entry):
-#  return ""
+def log(log):
+  return ""

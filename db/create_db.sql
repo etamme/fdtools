@@ -9,10 +9,13 @@ time time not null,
 decall varchar(15) not null,
 dxcall varchar(15) not null,
 band varchar(5) not null,
-freq varchar(10) not null,
+freq varchar(10) null,
 txrst varchar(10) not null,
 rxrst varchar(10) not null,
 mode varchar(5) not null,
 other varchar(255) null
 )ENGINE=InnoDB;
 
+CREATE USER 'fdtools'@'localhost';
+GRANT ALL PRIVILEGES ON fdtools TO 'fdtools'@'localhost';
+FLUSH PRIVILEGES;
